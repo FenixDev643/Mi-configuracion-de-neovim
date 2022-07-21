@@ -76,6 +76,23 @@ nnoremap <C-f> :Telescope find_files<CR>
 
 nnoremap <S-t> :terminal<CR>
 
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Use D to show documentation in preview window.
+nnoremap <silent> D :call ShowDocumentation()<CR>
+nnoremap <C-d> :CocList diagnostics<CR>
+
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('D', 'in')
+  endif
+endfunction
+
 " typescript support
 au BufNewFile,BufRead *.ts setlocal filetype=typescript
 au BufNewFile,BufRead *.tsx setlocal filetype=typescript.tsx
