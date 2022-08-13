@@ -1,15 +1,22 @@
-" ==          NEOVIM 0.6.0 CONFIG     ==
+" ==          NEOVIM 0.7.0 CONFIG     ==
 " ==          by FenixDEV             ==
-
-
 set encoding=UTF-8
 set number
 set nowrap
 set mouse=a " allow mouse
 set title
-set expandtab
+set expandtab   " tabs are space
 set cursorline  " highlits the current line
 set termguicolors
+
+" Spaces & Tabs {{{
+set tabstop=4       " number of visual spaces per TAB
+set softtabstop=4   " number of spaces in tab when editing
+set shiftwidth=4    " number of spaces to use for autoindent
+set expandtab       " tabs are space
+set autoindent
+set copyindent      " copy indent from the previous line
+" }}} Spaces & Tabs
 
 call plug#begin('~/AppData/Local/nvim/Plugins')
 " cool tree
@@ -27,8 +34,11 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-yank', 'coc-prettier']
 
 " airline
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+
+" lightline
+ Plug 'itchyny/lightline.vim'
 
 " my theme
 Plug 'sainnhe/sonokai'
@@ -47,14 +57,11 @@ Plug 'norcalli/nvim-colorizer.lua'
 
 call plug#end()
 
+" syntastic
+execute pathogen#infect()
+
 " color preview setup
 lua require'colorizer'.setup()
-
-"airline y theme config
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-let g:airline_theme='biogoo'
-let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 colorscheme sonokai 
 
